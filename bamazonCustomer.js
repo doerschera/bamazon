@@ -70,6 +70,7 @@ function inquire() {
       } else {
         var newQuantity = result[0].quantity - quantity;
         var totalSale = parseInt(quantity) * price;
+        totalSale.toFixed(2);
 
         connection.query('UPDATE products SET ? WHERE ?', [{quantity: newQuantity}, {id: id}], function() {
           if (err) throw err

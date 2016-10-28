@@ -59,7 +59,6 @@ function displayLow() {
 
 function addToInventory(id, amount) {
   connection.query('SELECT * FROM products WHERE ?', {id: id}, function(err, response) {
-    console.log(response);
     var quantity = parseInt(response[0].quantity);
     var newQuantity = quantity + amount;
     var product = response[0].product;
