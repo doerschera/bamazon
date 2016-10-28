@@ -62,9 +62,23 @@ function addToInventory(id, amount) {
       console.log('You have added '+amount+' units to '+product+ '.');
       console.log('Total units: '+newQuantity);
       console.log('------------------------------------------------------\n');
-      displayAll();
+      setTimeout(displayAll, 3000);
     })
   })
 }
 
-addToInventory(3, 1);
+function addProduct(product, department, price, quantity) {
+  connection.query('INSERT INTO products SET ?', {
+    product: product,
+    department: department,
+    price: price,
+    quantity: quantity
+  }, function(err, result) {
+    console.log('\n------------------------------------------------------');
+    console.log(product+' has been added to the inventory.');
+    console.log('------------------------------------------------------\n');
+    setTimeout(displayAll, 3000);
+  })
+}
+
+addProduct('semper', 'Household', '$37.50', '1');

@@ -1,16 +1,11 @@
-id, product, department, price, quantity
-1,interdum eu tincidunt,Electronics,$50.34,68
-2,in tempor turpis,Shoes,$88.59,40
-3,ut tellus,Jewelery,$22.44,19
-4,aliquam convallis nunc,Kids,$96.55,58
-5,lobortis convallis tortor,Kids,$23.43,53
-6,in,Kids,$49.43,22
-7,libero quis orci,Jewelery,$54.67,37
-8,molestie nibh,Toys,$4.87,50
-9,mauris ullamcorper,Tools,$30.75,4
-10,pede libero quis,Toys,$19.82,19
-11,a libero,Baby,$35.62,46
-12,justo,Industrial,$84.17,15
-13,massa donec,Toys,$60.59,51
-14,integer ac,Electronics,$90.63,22
-15,aliquam convallis,Kids,$16.91,13
+product, department, price, quantity
+interdum eu tincidunt,Electronics,$50.34,68
+in tempor turpis,Shoes,$88.59,40
+ut tellus,Jewelery,$22.44,19
+aliquam convallis nunc,Kids,$96.55,3
+lobortis convallis tortor,Kids,$23.43,53
+in,Kids,$49.43,22
+libero quis orci,Jewelery,$54.67,37
+molestie nibh,Toys,$4.87,50
+mauris ullamcorper,Tools,$30.75,4
+pede libero quis,Toys,$19.82,19
