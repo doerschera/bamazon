@@ -32,7 +32,6 @@ function displayAll() {
     console.log(table.toString())
 
     inquire();
-    return false;
   })
 }
 
