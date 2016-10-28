@@ -49,11 +49,13 @@ function inquire() {
     var id = parseInt(response.id);
     var quantity = parseInt(response.quantity);
     var product;
+    var price;
 
     connection.query('SELECT * FROM products WHERE ?', {id: id}, function(err, result) {
       if (err) throw err
 
       product = result[0].product;
+      price = parseFloat(result[0].price.replace(/\$|,/g, ''));
 
       if(quantity > result[0].quantity) {
         console.log('\n-----------------');
@@ -63,15 +65,19 @@ function inquire() {
         setTimeout(displayAll, 3000);
       } else {
         var newQuantity = result[0].quantity - quantity;
+        var totalSale = parseInt(quantity) * price;
 
         connection.query('UPDATE products SET ? WHERE ?', [{quantity: newQuantity}, {id: id}], function() {
           if (err) throw err
 
           console.log('\n-----------------');
           console.log('You have purchased '+quantity+' units of '+product+ '.');
+          console.log('Total sale: '+totalSale);
           console.log('-----------------\n');
 
-          setTimeout(displayAll, 3000);
+          connection.query('UPDATE departs SET ? WHERE ?', [{sales: sales+totalSale}, {id: id}], function() {
+            setTimeout(displayAll, 3000);
+          })
         })
       }
     })
