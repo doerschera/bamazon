@@ -51,4 +51,20 @@ function displayLow() {
   })
 }
 
-displayLow();
+function addToInventory(id, amount) {
+  connection.query('SELECT * FROM products WHERE ?', {id: id}, function(err, response) {
+    var quantity = response[0].quantity;
+    var newQuantity = quantity + amount;
+    var product = response[0].product;
+
+    connection.query('UPDATE products SET ? WHERE ?', [{quantity: newQuantity}, {id: id}], function() {
+      console.log('\n------------------------------------------------------');
+      console.log('You have added '+amount+' units to '+product+ '.');
+      console.log('Total units: '+newQuantity);
+      console.log('------------------------------------------------------\n');
+      displayAll();
+    })
+  })
+}
+
+addToInventory(3, 1);
