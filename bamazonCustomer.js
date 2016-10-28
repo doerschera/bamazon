@@ -4,7 +4,11 @@ var Table = require('cli-table');
 
 var table = new Table({
   head: ['id', 'product', 'department', 'price', 'quantity']
-})
+});
+
+var table2 = new Table({
+  head: ['id', 'product', 'department', 'price', 'quantity']
+});
 
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -75,7 +79,7 @@ function inquire() {
           console.log('Total sale: '+totalSale);
           console.log('-----------------\n');
 
-          connection.query('UPDATE departs SET ? WHERE ?', [{sales: sales+totalSale}, {id: id}], function() {
+          connection.query('UPDATE departments SET sales = sales+'+totalSale+' WHERE ?', {id: id}, function() {
             setTimeout(displayAll, 3000);
           })
         })
