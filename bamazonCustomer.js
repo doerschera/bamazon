@@ -30,6 +30,9 @@ function displayAll() {
     })
 
     console.log(table.toString())
+
+    inquire();
+    return false;
   })
 }
 
@@ -44,16 +47,33 @@ function inquire() {
       name: 'quantity'
     }
   ]).then(function(response) {
-    var id = parseInt(reponse.id);
-    var quantity = response.quantity;
+    var id = parseInt(response.id);
+    var quantity = parseInt(response.quantity);
+    var product;
 
     connection.query('SELECT * FROM products WHERE ?', {id: id}, function(err, result) {
+      if (err) throw err
+
+      product = result[0].product;
+
       if(quantity > result[0].quantity) {
-        console.log('/n-----------------');
+        console.log('\n-----------------');
         console.log('Insufficient quantity!');
-        console.log('/n-----------------');
-        displayAll();
-        inquire();
+        console.log('-----------------\n');
+
+        setTimeout(displayAll, 3000);
+      } else {
+        var newQuantity = result[0].quantity - quantity;
+
+        connection.query('UPDATE products SET ? WHERE ?', [{quantity: newQuantity}, {id: id}], function() {
+          if (err) throw err
+
+          console.log('\n-----------------');
+          console.log('You have purchased '+quantity+' units of '+product+ '.');
+          console.log('-----------------\n');
+
+          setTimeout(displayAll, 3000);
+        })
       }
     })
   })
