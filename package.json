@@ -1,0 +1,25 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "mysql data",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doerschera/bamazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doerschera/bamazon/issues"
+  },
+  "homepage": "https://github.com/doerschera/bamazon#readme",
+  "dependencies": {
+    "cli-table": "^0.3.1",
+    "easy-table": "^1.0.0",
+    "inquirer": "^1.2.2",
+    "mysql": "^2.11.1"
+  }
+}
