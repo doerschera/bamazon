@@ -34,7 +34,7 @@ function displayDepartments() {
     })
 
     console.log(table.toString());
-
+    inquire();
   })
 }
 
@@ -64,4 +64,32 @@ function addDepartment(department, overhead) {
   })
 }
 
-addDepartment('Sporting Goods', 500);
+function inquire() {
+  inquirer.prompt([
+    {
+      type: 'list',
+      choices: ['view sales by department', 'add department'],
+      message: 'What would you like to do?',
+      name: 'action'
+    }
+  ]).then(function(response) {
+    if(response.action == 'view sales by department') {
+      viewSales();
+    } else {
+      inquirer.prompt([
+        {
+          message: 'What is the department name?',
+          name: 'department'
+        },
+        {
+          message: 'What is the department overhead?',
+          name: 'overhead'
+        }
+      ]).then(function(response) {
+        addDepartment(response.department, response.overhead);
+      })
+    }
+  })
+}
+
+displayDepartments();
